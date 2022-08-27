@@ -2,6 +2,11 @@
   <header>
     <body>
       <div class="bg">
+        
+        <div class="back">
+          <router-link to="/"><img src="../assets/back.svg" width="50" height="50"/></router-link>
+        </div>
+
         <div>
           <div class="jam_analog_container">
             <div class="xxx">
@@ -22,11 +27,8 @@
 <script>
 export default {
   name: "App",
-  data(){
-    return{
- 
-
-    }
+  data() {
+    return {};
   },
 };
 </script>
@@ -48,6 +50,10 @@ export default {
   height: 100%;
   margin: 0;
   padding: 0;
+}
+
+.back{
+  margin:30px;
 }
 
 h1,
