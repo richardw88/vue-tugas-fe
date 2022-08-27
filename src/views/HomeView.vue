@@ -3,7 +3,7 @@
   <body>
     <div class="container">
     <h1>IT Developer</h1>
-    <router-link to="/about" class="buttonHello">Hello World</router-link>
+    <router-link to="/hello" class="buttonHello">Hello World</router-link>
     <br>
     <router-link to="" class="buttonHistory">History</router-link>
     </div>
