@@ -7,6 +7,7 @@
             ><img src="../assets/back.svg" width="50" height="50"
           /></router-link>
         </div>
+
         <div>
           <div class="jam_analog_container">
             <div class="xxx">
@@ -17,7 +18,21 @@
             </div>
           </div>
         </div>
-        <h2>15:00</h2>
+
+        <p class="time"></p>
+
+        <!-- <div class="jam-digital">
+          <div class="kotak">
+            <p id="jam"></p>
+          </div>
+          <div class="kotak">
+            <p id="menit"></p>
+          </div>
+          <div class="kotak">
+            <p id="detik"></p>
+          </div>
+        </div> -->
+
         <h1>HelloWorld</h1>
       </div>
     </body>
@@ -33,34 +48,44 @@ export default {
       const minuteHand = document.querySelector(".jarum_menit");
       const jarum_jam = document.querySelector(".jarum_jam");
 
+      const now = new Date();
+
+      const seconds = now.getSeconds();
+      const secondsDegrees = (seconds / 60) * 360 + 90;
+      secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+      if (secondsDegrees === 90) {
+        secondHand.style.transition = "none";
+      } else if (secondsDegrees >= 91) {
+        secondHand.style.transition =
+          "all 0.05s cubic-bezier(0.1, 2.7, 0.58, 1)";
+      }
+
+      const minutes = now.getMinutes();
+      const minutesDegrees = (minutes / 60) * 360 + 90;
+      minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
+
+      const hours = now.getHours();
+      const hoursDegrees = (hours / 12) * 360 + 90;
+      jarum_jam.style.transform = `rotate(${hoursDegrees}deg)`;
+
       
-        const now = new Date();
-
-        const seconds = now.getSeconds();
-        const secondsDegrees = (seconds / 60) * 360 + 90;
-        secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
-        if (secondsDegrees === 90) {
-          secondHand.style.transition = "none";
-        } else if (secondsDegrees >= 91) {
-          secondHand.style.transition =
-            "all 0.05s cubic-bezier(0.1, 2.7, 0.58, 1)";
-        }
-
-        const minutes = now.getMinutes();
-        const minutesDegrees = (minutes / 60) * 360 + 90;
-        minuteHand.style.transform = `rotate(${minutesDegrees}deg)`;
-
-        const hours = now.getHours();
-        const hoursDegrees = (hours / 12) * 360 + 90;
-        jarum_jam.style.transform = `rotate(${hoursDegrees}deg)`;
-      
-
-    }
+    },
+    digitalClock() {
+		var waktu = new Date();
+		setTimeout(this.digitalClock, 1000);
+		// document.getElementById("jam").innerHTML = waktu.getHours();
+		// document.getElementById("menit").innerHTML = waktu.getMinutes();
+		// document.getElementById("detik").innerHTML = waktu.getSeconds();
+    document.querySelector(".time").innerHTML = `${waktu.getHours()} : ${waktu.getMinutes()} : ${waktu.getSeconds()}`;
+	}
   },
-  mounted(){
-    console.log("cek")
-    setInterval( this.InitClock, 1000);
-  }
+	
+  mounted() {
+    console.log("cek");
+    // setInterval(this.InitClock, 1000);
+    setInterval(this.InitClock, 1000);
+    setTimeout(this.digitalClock, 1000);
+  },
 };
 </script>
 
@@ -93,6 +118,12 @@ h2 {
   text-align: center;
 }
 
+.titik{
+    float: left;
+  /* padding: 10px; */
+}
+
+/* jam analog */
 .jam_analog_container {
   position: relative;
   width: 240px;
@@ -148,6 +179,33 @@ h2 {
   border-radius: 4px;
   width: 35%;
   left: 15%;
+}
+/* jam analog end */
+
+/* jam digital */
+.jam-digital {
+  overflow: hidden;
+  width: 330px;
+  margin: 20px auto;
+
+}
+.kotak {
+  float: left;
+  width: 110px;
+  height: 100px;
+}
+.jam-digital p {
+  color: #fff;
+  font-size: 36px;
+  text-align: center;
+  margin-top: 30px;
+}
+/* jam digital end */
+.time {
+  text-align: center;
+  color: white;
+  font-size: 70px;
+  margin-top: 10px;
 }
 </style>
 
