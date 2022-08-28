@@ -175,8 +175,7 @@ thead, tbody tr{
 
 .right{
   text-align: right;
-  padding-right: 20px
-  ;
+  padding-right: 20px;
 }
 
 </style>

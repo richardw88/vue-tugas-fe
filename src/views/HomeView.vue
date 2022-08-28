@@ -45,6 +45,7 @@ h1{
   transform: translate(-50%, -50%);
   color:white;
   text-decoration: none;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .buttonHistory{
@@ -53,7 +54,7 @@ h1{
   /* left: 338px;
   top: 459px; */
   border-radius: 50px;
-  background:#5016FF;
+  background:#DACEFF;;
   cursor: pointer;
   text-align: center;
   padding-top: 10px;
@@ -62,8 +63,9 @@ h1{
   left: 50%;
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
-  color:white;
+  color: #5016FF;
   text-decoration: none;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
 .container{

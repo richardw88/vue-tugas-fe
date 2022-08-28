@@ -189,23 +189,20 @@ h2 {
   margin: 20px auto;
 
 }
-.kotak {
-  float: left;
-  width: 110px;
-  height: 100px;
-}
 .jam-digital p {
   color: #fff;
   font-size: 36px;
   text-align: center;
   margin-top: 30px;
 }
-/* jam digital end */
+
 .time {
   text-align: center;
   color: white;
   font-size: 70px;
   margin-top: 10px;
 }
+/* jam digital end */
+
 </style>
 
