@@ -2,13 +2,11 @@
   <header>
     <body>
       <div class="back">
-        <router-link to="/"
-          ><img src="../assets/back.svg" width="50" height="50"
-        /></router-link>
+        <router-link to="/"><img src="../assets/back.svg" width="50" height="50"/></router-link>
       </div>
       <h1>HISTORY</h1>
       <div class="tabelContainer">
-        <table class="tabelChild" cellpadding="10" border="1">
+        <table class="tabelChild">
           <tr>
             <td>Name</td>
             <td>Date</td>
@@ -43,6 +41,12 @@ body {
   padding: 0;
 }
 
+table{
+  border-spacing: 50px; 
+  border: 1px;
+  width: 100%
+}
+
 .back {
   margin: 30px;
 }
@@ -75,6 +79,7 @@ body {
   -ms-transform: translate(-50%, -50%);
   transform: translate(-50%, -50%);
   color: white;
+  overflow: auto;
 }
 
 h1 {
