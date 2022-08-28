@@ -2,11 +2,9 @@
   <header>
     <body>
       <div class="bg">
-        
         <div class="back">
           <router-link to="/"><img src="../assets/back.svg" width="50" height="50"/></router-link>
         </div>
-
         <div>
           <div class="jam_analog_container">
             <div class="xxx">
