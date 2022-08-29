@@ -112,7 +112,6 @@ export default {
 
   mounted() {
     console.log("cek");
-    // setInterval(this.InitClock, 1000);
     setInterval(this.InitClock, 1000);
     setTimeout(this.digitalClock, 1000);
     this.getHello();

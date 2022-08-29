@@ -44,6 +44,7 @@ export default {
         .get("http://127.0.0.1:8000/api/task")
         .then((response) => {
           this.history = response.data.data;
+          console.log(this.history); //cek data history
         })
         .catch((error) => {
           console.log(error);
@@ -51,9 +52,9 @@ export default {
     },
     fieldTime(data){
       let date = new Date(data)
-      let hh = date.getHours().toString()
-      let mm = date.getMinutes().toString()
-      return `${hh}.${mm}`
+      let jam = date.getHours().toString()
+      let menit = date.getMinutes().toString()
+      return `${jam}.${menit}`
     },
   },
   mounted() {
