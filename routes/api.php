@@ -14,6 +14,7 @@ use Illuminate\Support\Facades\Route;
 | is assigned the "api" middleware group. Enjoy building your API!
 |
 */
+Route::get('tampilTask',[TaskController::class, 'tampilTask']);
 Route::get('task',[TaskController::class, 'index']);
 Route::post('taskSaveData',[TaskController::class, 'savedata']);
 Route::middleware('auth:sanctum')->get('/user', function (Request $request) {

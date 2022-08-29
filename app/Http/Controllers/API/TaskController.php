@@ -15,6 +15,13 @@ class TaskController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
+
+    public function tampilTask()
+    {
+        $message = 'Hello World';
+        return ApiFormatter::createApi(200, "Success", $message);
+
+    }
     public function index()
     {
         //
@@ -44,7 +51,7 @@ class TaskController extends Controller
 
             $helloworld = Task::create($data);
 
-            return ApiFormatter::createApi(200, 'Data Berhasil diinput'); 
+            return ApiFormatter::createApi(200,'succes', 'Data Berhasil diinput'); 
             
 
         
