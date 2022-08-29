@@ -6,7 +6,6 @@
     <router-link to="/hello" class="buttonHello">Hello World</router-link>
     <br>
     <router-link to="/history" class="buttonHistory">History</router-link>
-
     </div>
   </body>
 </header>

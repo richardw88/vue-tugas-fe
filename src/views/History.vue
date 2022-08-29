@@ -5,8 +5,8 @@
         <router-link to="/"><img src="../assets/back.svg" width="50" height="50"/></router-link>
       </div>
       <h1>HISTORY</h1>
-      <div class="tabelContainer">
-        <table class="tabelChild">   
+    
+        <table>   
           <thead>
           <tr>
             <th class="left">Name</th>
@@ -15,65 +15,54 @@
           </thead>
 
           <tbody>  
-          <tr>
-            <td class="left">Hello World</td>
-            <td class="right">15:00</td>
+          <tr v-for="item of history" :key="item.id">
+            <td class="left">{{ item.username }}</td>
+            <td class="right">{{ fieldTime(item.created_at) }}</td>
           </tr>
 
-          <tr>
-            <td class="left">Hello World</td>
-            <td class="right">21:00</td>
-          </tr>
-
-          <tr>
-            <td class="left">Hello World</td>
-            <td class="right">21:00</td>
-          </tr>
-
-          <tr>
-            <td class="left">Hello World</td>
-            <td class="right">21:00</td>
-          </tr>
-
-          <tr>
-            <td class="left">Hello World</td>
-            <td class="right">21:00</td>
-          </tr>
-
-          <tr>
-            <td class="left">Hello World</td>
-            <td class="right">21:00</td>
-          </tr>
-
-          <tr>
-            <td class="left">Hello World</td>
-            <td class="right">21:00</td>
-          </tr>
-
-          <tr>
-            <td class="left">Hello World</td>
-            <td class="right">21:00</td>
-          </tr>
-
-          <tr>
-            <td class="left">Hello World</td>
-            <td class="right">21:00</td>
-          </tr>
-
-          <tr>
-            <td class="left">Hello World</td>
-            <td class="right">21:00</td>
-          </tr>
           </tbody>
 
         </table>
-      </div>
+      
     </body>
   </header>
 </template>
 
 <script>
-export default {};
+import axios from "axios";
+
+export default {
+  name: "App",
+  data() {
+    return {
+      history: [],
+    };
+  },
+  methods: {
+    getHistory() {
+      axios
+        .get("http://127.0.0.1:8000/api/task")
+        .then((response) => {
+          this.history = response.data.data;
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    fieldTime(data){
+      let date = new Date(data)
+      let hh = date.getHours().toString()
+      let mm = date.getMinutes().toString()
+      return `${hh}.${mm}`
+    },
+  },
+  mounted() {
+    console.log("cek history");
+    this.getHistory();
+    // this.fieldTime();
+  },
+};
+
 </script>
 
 <style>

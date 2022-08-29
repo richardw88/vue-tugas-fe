@@ -33,15 +33,22 @@
           </div>
         </div> -->
 
-        <h1>HelloWorld</h1>
+        <h1>{{ hello }}</h1>
       </div>
     </body>
   </header>
 </template>
 
 <script>
+import axios from "axios";
+
 export default {
   name: "App",
+  data() {
+    return {
+      hello: "",
+    };
+  },
   methods: {
     InitClock() {
       const secondHand = document.querySelector(".jarum_detik");
@@ -52,7 +59,7 @@ export default {
 
       const seconds = now.getSeconds();
       const secondsDegrees = (seconds / 60) * 360 + 90;
-      secondHand.style.transform = `rotate(${secondsDegrees}deg)`;
+      secondHand.style.transform = `rotateZ(${secondsDegrees}deg)`;
       if (secondsDegrees === 90) {
         secondHand.style.transition = "none";
       } else if (secondsDegrees >= 91) {
@@ -67,24 +74,48 @@ export default {
       const hours = now.getHours();
       const hoursDegrees = (hours / 12) * 360 + 90;
       jarum_jam.style.transform = `rotate(${hoursDegrees}deg)`;
-
-      
     },
     digitalClock() {
-		var waktu = new Date();
-		setTimeout(this.digitalClock, 1000);
-		// document.getElementById("jam").innerHTML = waktu.getHours();
-		// document.getElementById("menit").innerHTML = waktu.getMinutes();
-		// document.getElementById("detik").innerHTML = waktu.getSeconds();
-    document.querySelector(".time").innerHTML = `${waktu.getHours()} : ${waktu.getMinutes()} : ${waktu.getSeconds()}`;
-	}
+      var waktu = new Date();
+      setTimeout(this.digitalClock, 1000);
+      // document.getElementById("jam").innerHTML = waktu.getHours();
+      // document.getElementById("menit").innerHTML = waktu.getMinutes();
+      // document.getElementById("detik").innerHTML = waktu.getSeconds();
+      document.querySelector(
+        ".time"
+      ).innerHTML = `${waktu.getHours()} : ${waktu.getMinutes()} : ${waktu.getSeconds()}`;
+    },
+    getHello() {
+      axios
+        .get("http://127.0.0.1:8000/api/tampilTask")
+        .then((response) => {
+          this.hello = response.data.data;
+          this.postHello(response.data.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    },
+    postHello(post) {
+      axios
+        .post("http://127.0.0.1:8000/api/taskSaveData", {
+          username: post,
+        })
+        .then((response) => {
+          console.log(response.data.data);
+        })
+        .catch((error) => {
+          console.log(error);
+        });
+    }
   },
-	
+
   mounted() {
     console.log("cek");
     // setInterval(this.InitClock, 1000);
     setInterval(this.InitClock, 1000);
     setTimeout(this.digitalClock, 1000);
+    this.getHello();
   },
 };
 </script>
@@ -118,8 +149,8 @@ h2 {
   text-align: center;
 }
 
-.titik{
-    float: left;
+.titik {
+  float: left;
   /* padding: 10px; */
 }
 
@@ -187,7 +218,6 @@ h2 {
   overflow: hidden;
   width: 330px;
   margin: 20px auto;
-
 }
 .jam-digital p {
   color: #fff;
@@ -203,6 +233,5 @@ h2 {
   margin-top: 10px;
 }
 /* jam digital end */
-
 </style>
 
